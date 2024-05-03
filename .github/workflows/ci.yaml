@@ -3,7 +3,9 @@ name: ci
 on:
   push:
     branches: [master]
-    paths-ignore: [README.md]
+    paths:
+      - Dockerfile
+      - .github/workflow/**
   workflow_dispatch:
 
 env:

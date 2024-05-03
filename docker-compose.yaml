@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   service.naiveproxy:
-    image: 1andonli/naiveproxy:latest
+    image: 1andonli/naiveproxy:master
     container_name: naiveproxy
     network_mode: host
     restart: unless-stopped
