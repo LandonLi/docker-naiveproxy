@@ -26,10 +26,18 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: 1andonli/naiveproxy
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           platforms: ${{ matrix.platform }}
           build-args: ARCH=${{ matrix.arch }}
           push: true
-          tags: 1andonli/naiveproxy:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
